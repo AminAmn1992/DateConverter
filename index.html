@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تبدیل تاریخ پیشرفته</title>
+    <script src="https://cdn.jsdelivr.net/npm/jalaali-js/dist/jalaali.js"></script>
+    <style>
+        body { font-family: Tahoma, sans-serif; background: #f0f2f5; display: flex; justify-content: center; padding: 15px; margin: 0; }
+        .card { background: white; padding: 20px; border-radius: 20px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); width: 100%; max-width: 400px; border-top: 6px solid #4a90e2; }
+        h2 { text-align: center; color: #333; font-size: 1.2rem; }
+        .input-row { display: flex; gap: 10px; margin: 20px 0; }
+        input { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 10px; text-align: center; font-size: 16px; }
+        button { width: 100%; padding: 15px; background: #4a90e2; color: white; border: none; border-radius: 12px; font-weight: bold; cursor: pointer; }
+        #result { margin-top: 20px; padding: 15px; background: #eef2f7; border-radius: 10px; text-align: center; display: none; font-weight: bold; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h2>☀️ شمسی به میلادی</h2>
+        <div class="input-row">
+            <input type="number" id="jy" placeholder="سال">
+            <input type="number" id="jm" placeholder="ماه">
+            <input type="number" id="jd" placeholder="روز">
+        </div>
+        <button onclick="convert()">تبدیل به میلادی</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const y = +document.getElementById('jy').value;
+            const m = +document.getElementById('jm').value;
+            const d = +document.getElementById('jd').value;
+            if(y && m && d) {
+                const g = jalaali.toGregorian(y, m, d);
+                const res = document.getElementById('result');
+                res.style.display = 'block';
+                res.innerHTML = `📅 تاریخ میلادی:<br>${g.gy}/${g.gm}/${g.gd}`;
+            } else {
+                alert("لطفاً تمام فیلدها را پر کنید");
+            }
+        }
+    </script>
+</body>
+</html>
